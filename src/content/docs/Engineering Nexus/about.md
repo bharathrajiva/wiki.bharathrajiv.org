@@ -1,6 +1,7 @@
 ---
-title: Example Guide
+title: Engineering Nexus
 description: A guide in my new Starlight docs site.
+slug: engineeringnexus/about
 ---
 
 Guides lead a user through a specific task they want to accomplish, often with a sequence of steps.

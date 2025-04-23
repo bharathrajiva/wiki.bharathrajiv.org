@@ -25,29 +25,7 @@ export default defineConfig({
 				'./src/styles/styles.css',
 			  ],
 			  
-			  tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 2 },
-			sidebar: [
-				{
-					// Link group title
-					label: 'Getting Started',
-					// Directory of an autogenerate a group of links
-					autogenerate: { directory: 'getting-started' },
-				  },
-				{
-					label: 'Guides',
-					items: [
-						// Each item here is one entry in the navigation menu.
-						{ label: 'Example Guide', slug: 'guides/example' },
-					],
-				},
-				{
-					label: 'Reference',
-					autogenerate: { directory: 'reference' },
-				},
-				{ label: 'Spaceships and Rockets', link: 'https://www.nasa.gov/humans-in-space/spaceships-and-rockets/' }, // An external link to the NASA website.
-				{ label: 'Space Movie', link: 'https://en.wikipedia.org/wiki/Interstellar_(film)' },
-				
-			],
+			  tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 2 }
 		}),
 	],
 });
