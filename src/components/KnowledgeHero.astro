@@ -1,0 +1,51 @@
+---
+import heroPortrait from '../assets/landing-page-1.png';
+
+const domains = [
+	'AI Architecture',
+	'Systems Design',
+	'Platform Engineering',
+	'DevOps / SRE',
+	'Drone Systems',
+	'Custom OS / ROM',
+	'IoT / Edge',
+	'CAT + Algorithms',
+];
+
+const signalStats = [
+	{ value: '12+', label: 'engineering domains' },
+	{ value: '5', label: 'visualization modes' },
+	{ value: '24/7', label: 'searchable build memory' },
+];
+---
+
+<section class="knowledge-hero" style={`--hero-portrait: url("${heroPortrait.src}")`}>
+	<div class="hero-media" aria-hidden="true"></div>
+	<div class="hero-copy">
+		<p class="eyebrow">Bharath Rajiv A / Engineering Intelligence System</p>
+		<h1>A living operating system for my engineering mind.</h1>
+		<p class="hero-lede">
+			A sharp, searchable, visual-first wiki for AI architecture, distributed systems,
+			platform engineering, DevOps, drones, embedded systems, quantitative reasoning,
+			and the build logs behind real engineering taste.
+		</p>
+		<div class="hero-actions">
+			<a class="primary-action" href="/engineeringnexus/knowledge-map/">Explore the Map</a>
+			<a class="secondary-action" href="/engineeringnexus/projects/private-compute-cluster/">View Flagship Build</a>
+		</div>
+		<div class="signal-grid">
+			{signalStats.map((stat) => (
+				<div>
+					<strong>{stat.value}</strong>
+					<span>{stat.label}</span>
+				</div>
+			))}
+		</div>
+	</div>
+	<div class="domain-strip" aria-label="Knowledge domains">
+		<span class="strip-label">Live knowledge graph</span>
+		<div class="domain-cloud">
+			{domains.map((domain) => <span>{domain}</span>)}
+		</div>
+	</div>
+</section>
