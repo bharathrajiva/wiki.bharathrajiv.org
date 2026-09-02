@@ -223,3 +223,207 @@ Speed tricks:
 - If total is known, add ratio parts and divide total by sum of parts.
 - In partnership, profit ratio = capital * time.
 
+### Mixtures and Alligation
+
+Weighted average:
+
+```text
+Mean = (q1*v1 + q2*v2) / (q1 + q2)
+```
+
+Alligation:
+
+```text
+Cheaper quantity : Dearer quantity
+= (Dearer value - Mean) : (Mean - Cheaper value)
+```
+
+Use alligation when:
+
+- Mixing two concentrations.
+- Mixing two prices.
+- Combining two speeds for same type of quantity.
+- Combining two groups with known averages.
+
+Replacement formula:
+
+```text
+Final amount of original liquid
+= initial amount * (1 - removed volume / total volume)^n
+```
+
+Concentration shortcut:
+
+```text
+Pure solute = concentration * total quantity
+```
+
+Common traps:
+
+- Alligation gives quantity ratio, not value ratio.
+- In replacement, the container is refilled to the same total volume each time.
+
+### Time, Speed, and Distance
+
+Core formulas:
+
+```text
+Distance = speed * time
+Speed = distance / time
+Time = distance / speed
+```
+
+Average speed:
+
+```text
+Same distance at speeds x and y:
+Average speed = 2xy / (x + y)
+
+Same time at speeds x and y:
+Average speed = (x + y) / 2
+```
+
+Relative speed:
+
+```text
+Opposite directions = x + y
+Same direction = |x - y|
+```
+
+Trains:
+
+```text
+Time to cross pole = train length / speed
+Time to cross platform = (train length + platform length) / speed
+```
+
+Boats and streams:
+
+```text
+Downstream speed = boat speed + stream speed
+Upstream speed = boat speed - stream speed
+Boat speed = (downstream + upstream) / 2
+Stream speed = (downstream - upstream) / 2
+```
+
+Races:
+
+```text
+If A gives B a head start of d in race length L:
+Speed ratio A:B = L : (L - d)
+```
+
+Circular tracks:
+
+```text
+Opposite direction meeting time = track length / (sum of speeds)
+Same direction meeting time = track length / (difference of speeds)
+```
+
+Unit conversion:
+
+```text
+km/h to m/s: multiply by 5/18
+m/s to km/h: multiply by 18/5
+```
+
+Common traps:
+
+- Average of speeds is valid only when time is equal.
+- For equal distance, use harmonic mean.
+- Convert units before calculation.
+
+### Time and Work
+
+Core formulas:
+
+```text
+Work = rate * time
+If A finishes in x days, A's one-day work = 1/x
+Together time for A and B = xy / (x + y)
+```
+
+LCM method:
+
+1. Take total work as LCM of individual times.
+2. Efficiency = total work / time.
+3. Combined time = total work / combined efficiency.
+
+Efficiency-time relation:
+
+```text
+Efficiency ratio = inverse of time ratio
+If A:B efficiency = x:y, time ratio = y:x
+```
+
+Pipes and cisterns:
+
+```text
+Inlet = positive rate
+Outlet = negative rate
+Net rate = sum of rates
+Time = tank capacity / net rate
+```
+
+Wages:
+
+```text
+Wage share ratio = efficiency * time worked
+```
+
+Common traps:
+
+- If people leave/join, split into phases.
+- Work done and time taken are inverse only when total work is fixed.
+
+### Simple and Compound Interest
+
+Simple interest:
+
+```text
+SI = PRT / 100
+Amount = P + SI
+```
+
+Compound interest:
+
+```text
+Amount = P * (1 + R/100)^T
+CI = Amount - P
+```
+
+Effective rate:
+
+```text
+a% followed by b% compound growth:
+Effective rate = a + b + ab/100
+```
+
+Difference between CI and SI:
+
+```text
+For 2 years:
+CI - SI = P * (R/100)^2
+
+For 3 years:
+CI - SI = P * [3(R/100)^2 + (R/100)^3]
+```
+
+Half-yearly or quarterly:
+
+```text
+Half-yearly: rate becomes R/2, time periods become 2T
+Quarterly: rate becomes R/4, time periods become 4T
+```
+
+Installments shortcut:
+
+```text
+Present value of equal installments = sum of each installment discounted to today
+```
+
+Common traps:
+
+- SI grows linearly; CI grows successively.
+- Match rate period with time period.
+
