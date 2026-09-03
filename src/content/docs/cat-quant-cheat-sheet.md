@@ -427,3 +427,211 @@ Common traps:
 - SI grows linearly; CI grows successively.
 - Match rate period with time period.
 
+## Algebra
+
+### Linear Equations
+
+Core approach:
+
+```text
+ax + b = c => x = (c - b) / a
+For two equations, eliminate one variable or substitute.
+```
+
+Speed rules:
+
+- Convert word statements to equations immediately.
+- If options exist, substitute options.
+- For age problems, use current age as variable; age difference stays constant.
+- For digits problems, two-digit number with tens digit x and units digit y is `10x + y`.
+
+Common equation patterns:
+
+```text
+Sum known: x + y = S
+Difference known: x - y = D
+Ratio known: x/y = a/b => x = ak, y = bk
+```
+
+### Quadratic Equations
+
+Standard form:
+
+```text
+ax^2 + bx + c = 0
+```
+
+Roots:
+
+```text
+x = [-b +/- sqrt(b^2 - 4ac)] / 2a
+Sum of roots = -b/a
+Product of roots = c/a
+Discriminant D = b^2 - 4ac
+```
+
+Discriminant meaning:
+
+```text
+D > 0: two real roots
+D = 0: equal real roots
+D < 0: no real roots
+```
+
+Factorization shortcut:
+
+```text
+For x^2 + bx + c:
+Find p and q such that p + q = b and pq = c
+```
+
+Signs of roots:
+
+```text
+Both positive: sum positive, product positive
+Both negative: sum negative, product positive
+Opposite signs: product negative
+```
+
+Useful identities:
+
+```text
+(a+b)^2 = a^2 + 2ab + b^2
+(a-b)^2 = a^2 - 2ab + b^2
+a^2 - b^2 = (a-b)(a+b)
+(a+b)^3 = a^3 + b^3 + 3ab(a+b)
+(a-b)^3 = a^3 - b^3 - 3ab(a-b)
+a^3 + b^3 = (a+b)(a^2 - ab + b^2)
+a^3 - b^3 = (a-b)(a^2 + ab + b^2)
+```
+
+### Inequalities
+
+Rules:
+
+```text
+Adding/subtracting same value keeps inequality direction.
+Multiplying/dividing by positive value keeps direction.
+Multiplying/dividing by negative value reverses direction.
+```
+
+Sign chart method:
+
+1. Bring all terms to one side.
+2. Factorize.
+3. Mark critical points on number line.
+4. Test intervals.
+
+Common patterns:
+
+```text
+(x-a)(x-b) > 0 => x < min(a,b) or x > max(a,b)
+(x-a)(x-b) < 0 => min(a,b) < x < max(a,b)
+```
+
+Modulus:
+
+```text
+|x| < a => -a < x < a
+|x| > a => x < -a or x > a
+|x-a| = distance of x from a
+```
+
+Common traps:
+
+- Reverse inequality when multiplying by a negative.
+- Do not square both sides unless signs are controlled.
+
+### Functions
+
+Basics:
+
+```text
+f(x) = rule that maps input x to output
+Domain = allowed inputs
+Range = possible outputs
+Composite: (f o g)(x) = f(g(x))
+Inverse: f^-1(x) reverses f(x)
+```
+
+Function types:
+
+```text
+Even: f(-x) = f(x)
+Odd: f(-x) = -f(x)
+One-one: different inputs give different outputs
+Onto: every output in codomain is hit
+```
+
+Speed checks:
+
+- Denominator cannot be zero.
+- Even root input must be non-negative.
+- Log input must be positive.
+- For inverse, swap x and y, then solve for y.
+
+### Logarithms
+
+Definition:
+
+```text
+log_a b = x means a^x = b
+a > 0, a != 1, b > 0
+```
+
+Rules:
+
+```text
+log_a(xy) = log_a x + log_a y
+log_a(x/y) = log_a x - log_a y
+log_a(x^k) = k log_a x
+log_a b = 1 / log_b a
+log_a b = log_c b / log_c a
+```
+
+Special values:
+
+```text
+log_a 1 = 0
+log_a a = 1
+a^(log_a x) = x
+```
+
+Speed tricks:
+
+- Convert logs to exponentials if stuck.
+- Same base logs can be compared directly if base > 1.
+- If 0 < base < 1, comparison direction reverses.
+
+### Sequences and Series
+
+Arithmetic progression:
+
+```text
+nth term: a_n = a + (n-1)d
+Sum: S_n = n/2 * [2a + (n-1)d]
+Also: S_n = n/2 * (first + last)
+```
+
+Geometric progression:
+
+```text
+nth term: a_n = ar^(n-1)
+Sum: S_n = a(r^n - 1)/(r - 1), r != 1
+Infinite sum: S_inf = a/(1-r), if |r| < 1
+```
+
+Common sums:
+
+```text
+1 + 2 + ... + n = n(n+1)/2
+1^2 + 2^2 + ... + n^2 = n(n+1)(2n+1)/6
+1^3 + 2^3 + ... + n^3 = [n(n+1)/2]^2
+```
+
+Speed tricks:
+
+- Check if differences are constant: AP.
+- Check if ratios are constant: GP.
+- For repeating decimals, use GP.
+
