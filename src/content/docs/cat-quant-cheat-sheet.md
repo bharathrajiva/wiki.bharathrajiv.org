@@ -789,3 +789,140 @@ Each exterior angle = 360/n deg
 Number of diagonals = n(n-3)/2
 ```
 
+### 2D Mensuration
+
+Core areas:
+
+```text
+Rectangle = l*b
+Square = a^2
+Triangle = 1/2*b*h
+Circle = pi*r^2
+Parallelogram = b*h
+Trapezium = 1/2*(a+b)*h
+Rhombus = 1/2*d1*d2
+```
+
+Perimeter:
+
+```text
+Rectangle = 2(l+b)
+Square = 4a
+Circle circumference = 2*pi*r
+```
+
+Speed tricks:
+
+- If all dimensions scale by k, area scales by k^2.
+- For shaded regions, calculate larger area minus smaller area.
+- Use `pi = 22/7` when radius is multiple of 7; use `3.14` only when needed.
+
+### 3D Mensuration
+
+Cuboid:
+
+```text
+Volume = l*b*h
+TSA = 2(lb + bh + hl)
+LSA = 2h(l+b)
+Diagonal = sqrt(l^2 + b^2 + h^2)
+```
+
+Cube:
+
+```text
+Volume = a^3
+TSA = 6a^2
+Diagonal = a*sqrt(3)
+```
+
+Cylinder:
+
+```text
+Volume = pi*r^2*h
+CSA = 2*pi*r*h
+TSA = 2*pi*r(h+r)
+```
+
+Cone:
+
+```text
+Volume = 1/3*pi*r^2*h
+Slant height l = sqrt(r^2 + h^2)
+CSA = pi*r*l
+TSA = pi*r(l+r)
+```
+
+Sphere:
+
+```text
+Volume = 4/3*pi*r^3
+Surface area = 4*pi*r^2
+```
+
+Hemisphere:
+
+```text
+Volume = 2/3*pi*r^3
+CSA = 2*pi*r^2
+TSA = 3*pi*r^2
+```
+
+Scaling:
+
+```text
+Length ratio = a:b
+Area ratio = a^2:b^2
+Volume ratio = a^3:b^3
+```
+
+### Coordinate Geometry
+
+Distance:
+
+```text
+Distance between (x1,y1), (x2,y2)
+= sqrt[(x2-x1)^2 + (y2-y1)^2]
+```
+
+Midpoint:
+
+```text
+((x1+x2)/2, (y1+y2)/2)
+```
+
+Section formula:
+
+```text
+Point dividing A(x1,y1), B(x2,y2) in ratio m:n internally:
+((mx2 + nx1)/(m+n), (my2 + ny1)/(m+n))
+```
+
+Slope:
+
+```text
+m = (y2-y1)/(x2-x1)
+Parallel lines: slopes equal
+Perpendicular lines: m1*m2 = -1
+```
+
+Line equation:
+
+```text
+y = mx + c
+y - y1 = m(x - x1)
+```
+
+Area of triangle:
+
+```text
+Area = 1/2 * |x1(y2-y3) + x2(y3-y1) + x3(y1-y2)|
+```
+
+Circle:
+
+```text
+(x-a)^2 + (y-b)^2 = r^2
+Center = (a,b), radius = r
+```
+
