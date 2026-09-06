@@ -926,3 +926,185 @@ Circle:
 Center = (a,b), radius = r
 ```
 
+## Number System
+
+### HCF and LCM
+
+Core facts:
+
+```text
+For two numbers: HCF * LCM = product of numbers
+HCF = product of common prime factors with minimum powers
+LCM = product of all prime factors with maximum powers
+```
+
+For fractions:
+
+```text
+HCF of fractions = HCF(numerators) / LCM(denominators)
+LCM of fractions = LCM(numerators) / HCF(denominators)
+```
+
+Euclid algorithm:
+
+```text
+HCF(a,b) = HCF(b, remainder when a is divided by b)
+```
+
+### Divisibility
+
+| Divisor | Test |
+| --- | --- |
+| 2 | Last digit even |
+| 3 | Sum of digits divisible by 3 |
+| 4 | Last two digits divisible by 4 |
+| 5 | Last digit 0 or 5 |
+| 6 | Divisible by 2 and 3 |
+| 8 | Last three digits divisible by 8 |
+| 9 | Sum of digits divisible by 9 |
+| 10 | Last digit 0 |
+| 11 | Difference of alternate digit sums is 0 or multiple of 11 |
+| 12 | Divisible by 3 and 4 |
+| 15 | Divisible by 3 and 5 |
+
+### Remainders
+
+Rules:
+
+```text
+(a+b) mod n = [(a mod n) + (b mod n)] mod n
+(a-b) mod n = [(a mod n) - (b mod n)] mod n
+(a*b) mod n = [(a mod n)*(b mod n)] mod n
+```
+
+Negative remainder handling:
+
+```text
+-2 mod 7 = 5
+```
+
+Cyclic powers:
+
+1. Find pattern of remainders.
+2. Reduce exponent using cycle length.
+3. Use the matching remainder.
+
+Fermat shortcut:
+
+```text
+If p is prime and a is not divisible by p:
+a^(p-1) mod p = 1
+```
+
+### Factors
+
+If:
+
+```text
+N = p^a * q^b * r^c
+```
+
+Then:
+
+```text
+Number of factors = (a+1)(b+1)(c+1)
+Sum of factors = [(p^(a+1)-1)/(p-1)] * [(q^(b+1)-1)/(q-1)] * ...
+Product of factors = N^(number of factors / 2)
+```
+
+Perfect square:
+
+```text
+All prime powers are even.
+Number of factors is odd.
+```
+
+Trailing zeroes:
+
+```text
+Trailing zeroes = number of pairs of 2 and 5
+Usually count 5s, since 2s are more frequent.
+```
+
+### Factorials
+
+Trailing zeroes in `n!`:
+
+```text
+floor(n/5) + floor(n/25) + floor(n/125) + ...
+```
+
+Highest power of prime p in `n!`:
+
+```text
+floor(n/p) + floor(n/p^2) + floor(n/p^3) + ...
+```
+
+Last non-zero digit and advanced factorial remainders are lower frequency; use only if the question clearly asks.
+
+### Surds and Indices
+
+Indices:
+
+```text
+a^m * a^n = a^(m+n)
+a^m / a^n = a^(m-n)
+(a^m)^n = a^(mn)
+(ab)^n = a^n b^n
+a^0 = 1
+a^-n = 1/a^n
+```
+
+Surds:
+
+```text
+sqrt(ab) = sqrt(a)*sqrt(b)
+sqrt(a/b) = sqrt(a)/sqrt(b)
+```
+
+Rationalization:
+
+```text
+1/(a + sqrt(b)) = (a - sqrt(b))/(a^2 - b)
+```
+
+Useful squares:
+
+| n | n^2 | n | n^2 |
+| ---: | ---: | ---: | ---: |
+| 11 | 121 | 21 | 441 |
+| 12 | 144 | 22 | 484 |
+| 13 | 169 | 23 | 529 |
+| 14 | 196 | 24 | 576 |
+| 15 | 225 | 25 | 625 |
+| 16 | 256 | 26 | 676 |
+| 17 | 289 | 27 | 729 |
+| 18 | 324 | 28 | 784 |
+| 19 | 361 | 29 | 841 |
+| 20 | 400 | 30 | 900 |
+
+### Base System
+
+Place value:
+
+```text
+(abc)_b = a*b^2 + b_digit*b + c
+```
+
+Decimal to base b:
+
+1. Repeatedly divide by b.
+2. Record remainders.
+3. Read remainders bottom to top.
+
+Base b to decimal:
+
+```text
+Multiply each digit by powers of b and add.
+```
+
+Speed checks:
+
+- In base b, allowed digits are `0` to `b-1`.
+- Last digit determines divisibility by base factors.
+
