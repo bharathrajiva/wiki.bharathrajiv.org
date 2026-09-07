@@ -1303,3 +1303,37 @@ Useful expansions:
 (1-x)^n alternates signs
 ```
 
+## CAT Accuracy Checklist
+
+Before marking:
+
+1. Did I use the correct base for percentage/profit/discount?
+2. Did I convert all units?
+3. Is the answer within a logical range?
+4. Did I solve for what was asked, not an intermediate variable?
+5. Can the option be checked by substitution?
+6. Is there a faster reverse calculation from the options?
+7. Did words like "only", "at least", "at most", "not", and "except" change the condition?
+
+## Fast Practice Order
+
+Use this order for maximum compounding:
+
+1. Percentages
+2. Ratio and proportion
+3. Averages
+4. Profit, loss, and discount
+5. Simple and compound interest
+6. Mixtures and alligation
+7. Time and work
+8. Time, speed, and distance
+9. Number system
+10. Algebra
+11. Geometry and mensuration
+12. Modern maths
+
+For each topic, do three passes:
+
+1. Formula pass: memorize formulas and traps.
+2. Pattern pass: solve 20 easy-medium questions quickly.
+3. CAT pass: solve mixed timed sets and review every miss.
