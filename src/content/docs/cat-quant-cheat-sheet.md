@@ -1108,3 +1108,198 @@ Speed checks:
 - In base b, allowed digits are `0` to `b-1`.
 - Last digit determines divisibility by base factors.
 
+## Modern Maths
+
+### Permutation and Combination
+
+Factorial:
+
+```text
+n! = n*(n-1)*(n-2)*...*1
+0! = 1
+```
+
+Permutation:
+
+```text
+nPr = n! / (n-r)!
+```
+
+Combination:
+
+```text
+nCr = n! / [r!(n-r)!]
+nCr = nC(n-r)
+nCr + nC(r-1) = (n+1)Cr
+```
+
+When to use:
+
+| Wording | Use |
+| --- | --- |
+| Arrange, order, rank, seat | Permutation |
+| Select, choose, committee, team | Combination |
+| At least one | Total - none |
+| Identical objects | Divide by repeated factorials |
+
+Arrangements:
+
+```text
+n distinct in a row = n!
+n distinct in a circle = (n-1)!
+If clockwise and anticlockwise same, circular arrangements = (n-1)!/2
+```
+
+Repeated letters:
+
+```text
+Arrangements of n letters with repeats a,b,c:
+n! / (a!b!c!)
+```
+
+Gap method:
+
+- Use for "no two together".
+- Arrange non-restricted objects first.
+- Place restricted objects in gaps.
+
+Block method:
+
+- Use for "must be together".
+- Treat grouped objects as one block.
+- Multiply by internal arrangements.
+
+### Probability
+
+Core formulas:
+
+```text
+Probability = favorable outcomes / total outcomes
+P(not A) = 1 - P(A)
+P(A or B) = P(A) + P(B) - P(A and B)
+```
+
+Independent events:
+
+```text
+P(A and B) = P(A) * P(B)
+```
+
+Conditional probability:
+
+```text
+P(A given B) = P(A and B) / P(B)
+```
+
+At least one:
+
+```text
+P(at least one success) = 1 - P(no success)
+```
+
+Binomial probability:
+
+```text
+For n trials, success probability p:
+P(exactly r successes) = nCr * p^r * (1-p)^(n-r)
+```
+
+Common traps:
+
+- Without replacement changes probability after each draw.
+- With replacement keeps probability constant.
+- Probability is never below 0 or above 1.
+
+### Set Theory
+
+Two sets:
+
+```text
+n(A union B) = n(A) + n(B) - n(A intersection B)
+```
+
+Three sets:
+
+```text
+n(A union B union C)
+= n(A) + n(B) + n(C)
+- n(A intersection B) - n(B intersection C) - n(C intersection A)
++ n(A intersection B intersection C)
+```
+
+Only regions:
+
+```text
+Only A = A - AB only - AC only - ABC
+Exactly two = AB only + BC only + CA only
+At least two = exactly two + all three
+At least one = union
+None = total - union
+```
+
+Fast Venn method:
+
+1. Fill the center first.
+2. Fill exactly-two regions by subtracting center from pairwise intersections.
+3. Fill only-one regions.
+4. Use total to get none.
+
+### Venn Diagrams
+
+Two-set table:
+
+```text
+Only A = A - A intersection B
+Only B = B - A intersection B
+Neither = Total - A union B
+```
+
+Three-set accuracy checklist:
+
+- Pairwise intersection values often include the triple intersection.
+- "Only A and B" excludes C.
+- "A and B" usually includes those also in C unless "only" is written.
+- "Exactly one" is not the same as "at least one".
+
+### Binomial Theorem
+
+Expansion:
+
+```text
+(a+b)^n = nC0*a^n + nC1*a^(n-1)b + ... + nCn*b^n
+```
+
+General term:
+
+```text
+T_(r+1) = nCr * a^(n-r) * b^r
+```
+
+Number of terms:
+
+```text
+(a+b)^n has n+1 terms
+```
+
+Middle term:
+
+```text
+If n is even: one middle term, T_(n/2 + 1)
+If n is odd: two middle terms, T_((n+1)/2) and T_((n+3)/2)
+```
+
+Coefficient sum shortcuts:
+
+```text
+Sum of coefficients of polynomial f(x): put x = 1
+Sum of even-power coefficients and odd-power coefficients:
+Use f(1) and f(-1)
+```
+
+Useful expansions:
+
+```text
+(1+x)^n = 1 + nx + nC2*x^2 + nC3*x^3 + ...
+(1-x)^n alternates signs
+```
+
