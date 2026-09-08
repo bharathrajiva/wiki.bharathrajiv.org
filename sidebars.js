@@ -179,7 +179,7 @@ const sidebars = {
       label: 'Exploratory Projects',
       collapsible: true,
       collapsed: true,
-      items: ['exploratory-projects/overview'],
+      items: ['exploratory-projects/overview', 'exploratory-projects/apisix-cognito-mtls'],
     },
     {
       type: 'category',

@@ -50,7 +50,7 @@ const config = {
     ({
       image: 'img/light-site-logo.png',
       colorMode: {
-        defaultMode: 'dark',
+        defaultMode: 'light',
         disableSwitch: false,
         respectPrefersColorScheme: true,
       },
