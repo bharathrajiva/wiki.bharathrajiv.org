@@ -1,0 +1,79 @@
+/**
+ * Site theme for wiki.bharathrajiv.org.
+ * Typography, elevation, and radius scale inspired by modern developer-docs
+ * sites (DM Sans + JetBrains Mono, indigo/lime accents, soft layered shadows).
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,100..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  --ifm-color-primary: #343ced;
+  --ifm-color-primary-dark: #1922eb;
+  --ifm-color-primary-darker: #141de2;
+  --ifm-color-primary-darkest: #1018ba;
+  --ifm-color-primary-light: #4f55ef;
+  --ifm-color-primary-lighter: #5c62f1;
+  --ifm-color-primary-lightest: #8488f4;
+
+  --ifm-font-family-base: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu,
+    Cantarell, 'Noto Sans', sans-serif;
+  --ifm-heading-font-family: var(--ifm-font-family-base);
+  --ifm-font-family-monospace: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, 'Liberation Mono', 'Courier New', monospace;
+  --ifm-font-size-base: 87.5%;
+  --ifm-code-font-size: 85%;
+  --ifm-h1-font-size: 2rem;
+  --ifm-h2-font-size: 1.6rem;
+  --ifm-h3-font-size: 1.3rem;
+  --ifm-h4-font-size: 1.1rem;
+  --ifm-h5-font-size: 1rem;
+  --ifm-h6-font-size: 0.9rem;
+  --ifm-font-weight-base: 400;
+  --ifm-font-weight-semibold: 600;
+  --ifm-heading-font-weight: 600;
+
+  --nexus-accent: #d8fd49;
+  --nexus-radius-sm: 4px;
+  --nexus-radius-md: 8px;
+  --nexus-radius-lg: 12px;
+  --nexus-radius-xl: 16px;
+  --nexus-radius-2xl: 24px;
+  --nexus-shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 0 0 0 rgba(0, 0, 0, 0.4);
+  --nexus-shadow-md: 0 8px 8px -4px rgba(0, 0, 0, 0.15), 0 0 1px 0 rgba(0, 0, 0, 0.4);
+  --nexus-shadow-lg: 0 8px 24px -6px rgba(0, 0, 0, 0.15), 0 0 1px 0 rgba(0, 0, 0, 0.4);
+  --nexus-shadow-xl: 0 32px 32px -8px rgba(0, 0, 0, 0.08), 0 0 32px -8px rgba(0, 0, 0, 0.12),
+    0 0 1px 0 rgba(0, 0, 0, 0.2);
+
+  --docusaurus-highlighted-code-line-bg: rgba(52, 60, 237, 0.1);
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #8488f4;
+  --ifm-color-primary-dark: #5c62f1;
+  --ifm-color-primary-darker: #4f55ef;
+  --ifm-color-primary-darkest: #343ced;
+  --ifm-color-primary-light: #a3a6f7;
+  --ifm-color-primary-lighter: #b4b7f8;
+  --ifm-color-primary-lightest: #dadbfc;
+
+  --ifm-background-color: #1b1d21;
+  --ifm-navbar-background-color: #202124;
+  --ifm-color-emphasis-100: #27292d;
+  --ifm-color-emphasis-200: #313338;
+  --ifm-color-emphasis-300: #3f4147;
+  --ifm-color-emphasis-400: #55575e;
+  --ifm-color-emphasis-500: #75777f;
+  --ifm-color-emphasis-600: #9a9ca4;
+  --ifm-color-emphasis-700: #c1c3ca;
+  --ifm-color-emphasis-800: #e2e3e8;
+  --ifm-color-emphasis-900: #f4f5f7;
+
+  --docusaurus-highlighted-code-line-bg: rgba(132, 136, 244, 0.16);
+}
+
+.footer--minimal {
+  padding: 1.25rem 1rem;
+  text-align: center;
+  font-size: 0.85rem;
+}

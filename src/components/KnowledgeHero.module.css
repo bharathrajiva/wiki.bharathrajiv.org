@@ -1,0 +1,209 @@
+.knowledgeHero {
+  position: relative;
+  display: grid;
+  align-items: end;
+  min-height: 640px;
+  padding: 6rem max(1.5rem, calc((100vw - 1180px) / 2)) 2rem;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    linear-gradient(90deg, rgba(9, 10, 15, 0.97) 0%, rgba(9, 10, 15, 0.82) 43%, rgba(9, 10, 15, 0.38) 68%, rgba(9, 10, 15, 0.92) 100%),
+    linear-gradient(180deg, rgba(9, 10, 15, 0.16) 0%, rgba(9, 10, 15, 0.97) 100%),
+    #0a0a0f;
+  border-bottom: 1px solid rgba(216, 253, 73, 0.14);
+  color: #f4f5f7;
+}
+
+.heroMedia {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image: var(--hero-portrait);
+  background-repeat: no-repeat;
+  background-position: right 13% center;
+  background-size: auto 105%;
+  filter: saturate(1.05) contrast(1.02);
+}
+
+.knowledgeHero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(52, 60, 237, 0.18) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(216, 253, 73, 0.08) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(90deg, #000 0%, transparent 72%);
+  opacity: 0.5;
+}
+
+.heroCopy {
+  max-width: 760px;
+}
+
+.eyebrow,
+.stripLabel {
+  margin: 0 0 0.9rem;
+  color: var(--nexus-accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.heroCopy h1 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 4.25rem;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+.heroLede {
+  max-width: 640px;
+  margin: 1.35rem 0 0;
+  color: rgba(244, 245, 247, 0.75);
+  font-size: 1.08rem;
+  line-height: 1.7;
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: 2rem;
+}
+
+.primaryAction,
+.secondaryAction {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.78rem 1.1rem;
+  border: 1px solid transparent;
+  border-radius: var(--nexus-radius-md);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.primaryAction {
+  color: #0a0a0f;
+  background: var(--nexus-accent);
+  box-shadow: var(--nexus-shadow-lg);
+}
+
+.secondaryAction {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(12px);
+}
+
+.signalGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+  max-width: 600px;
+  margin-top: 2rem;
+}
+
+.signalGrid div {
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--nexus-radius-md);
+  background: rgba(9, 10, 15, 0.5);
+  backdrop-filter: blur(16px);
+}
+
+.signalGrid strong {
+  display: block;
+  color: var(--ifm-color-primary-lighter);
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.signalGrid span {
+  display: block;
+  margin-top: 0.35rem;
+  color: rgba(244, 245, 247, 0.65);
+  font-size: 0.8rem;
+  line-height: 1.35;
+}
+
+.domainStrip {
+  display: grid;
+  gap: 1rem;
+  margin-top: 3.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.domainCloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.domainCloud span {
+  padding: 0.46rem 0.68rem;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: var(--nexus-radius-2xl);
+  color: #eef0f4;
+  background: rgba(255, 255, 255, 0.04);
+  font-size: 0.8rem;
+  line-height: 1;
+}
+
+.domainCloud span:nth-child(3n + 1) {
+  border-color: rgba(52, 60, 237, 0.5);
+}
+
+.domainCloud span:nth-child(3n + 2) {
+  border-color: rgba(216, 253, 73, 0.35);
+}
+
+@media (max-width: 1000px) {
+  .knowledgeHero {
+    min-height: 600px;
+  }
+
+  .heroMedia {
+    background-position: right -12rem center;
+    opacity: 0.45;
+  }
+
+  .heroCopy h1 {
+    font-size: 3.2rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .knowledgeHero {
+    min-height: 680px;
+    padding-top: 5rem;
+  }
+
+  .heroMedia {
+    background-position: center top;
+    background-size: auto 78%;
+    opacity: 0.32;
+  }
+
+  .heroCopy h1 {
+    font-size: 2.4rem;
+  }
+
+  .heroLede {
+    font-size: 0.98rem;
+  }
+
+  .heroActions {
+    display: grid;
+  }
+
+  .signalGrid {
+    grid-template-columns: 1fr;
+  }
+}
