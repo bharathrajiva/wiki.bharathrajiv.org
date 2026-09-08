@@ -1,7 +1,8 @@
 /**
  * Site theme for wiki.bharathrajiv.org.
- * Typography, elevation, and radius scale inspired by modern developer-docs
- * sites (DM Sans + JetBrains Mono, indigo/lime accents, soft layered shadows).
+ * Color scheme and typography matched to developers.glean.com's Docusaurus
+ * theme (DM Sans + JetBrains Mono, indigo primary, lime accent, layered
+ * shadow/radius scale) for both light and dark mode.
  */
 
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,100..1000&display=swap');
@@ -16,24 +17,47 @@
   --ifm-color-primary-lighter: #5c62f1;
   --ifm-color-primary-lightest: #8488f4;
 
-  --ifm-font-family-base: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu,
-    Cantarell, 'Noto Sans', sans-serif;
-  --ifm-heading-font-family: var(--ifm-font-family-base);
-  --ifm-font-family-monospace: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco,
-    Consolas, 'Liberation Mono', 'Courier New', monospace;
-  --ifm-font-size-base: 87.5%;
-  --ifm-code-font-size: 85%;
-  --ifm-h1-font-size: 2rem;
-  --ifm-h2-font-size: 1.6rem;
-  --ifm-h3-font-size: 1.3rem;
-  --ifm-h4-font-size: 1.1rem;
-  --ifm-h5-font-size: 1rem;
-  --ifm-h6-font-size: 0.9rem;
-  --ifm-font-weight-base: 400;
-  --ifm-font-weight-semibold: 600;
-  --ifm-heading-font-weight: 600;
+  --ifm-color-accent: #d8fd49;
 
-  --nexus-accent: #d8fd49;
+  --ifm-color-success: #27ae60;
+  --ifm-color-success-dark: #229a56;
+  --ifm-color-success-darker: #1f8d4f;
+  --ifm-color-success-darkest: #1a7442;
+  --ifm-color-success-light: #3ec170;
+  --ifm-color-success-lighter: #55c97f;
+  --ifm-color-success-lightest: #82d9a0;
+
+  --ifm-color-warning: #fff7be;
+  --ifm-color-warning-dark: #fff4ab;
+  --ifm-color-warning-darker: #fff298;
+  --ifm-color-warning-darkest: #ffed72;
+  --ifm-color-warning-light: #fff9d1;
+  --ifm-color-warning-lighter: #fffae4;
+  --ifm-color-warning-lightest: #fffcf7;
+
+  --ifm-color-danger: #e02e2a;
+  --ifm-color-danger-dark: #ca2925;
+  --ifm-color-danger-darker: #be2622;
+  --ifm-color-danger-darkest: #9c1f1c;
+  --ifm-color-danger-light: #e64844;
+  --ifm-color-danger-lighter: #e95b57;
+  --ifm-color-danger-lightest: #ef827f;
+
+  --ifm-color-info: #aab5ff;
+  --ifm-color-info-dark: #93a1ff;
+  --ifm-color-info-darker: #7c8eff;
+  --ifm-color-info-darkest: #5568ff;
+  --ifm-color-info-light: #c1c9ff;
+  --ifm-color-info-lighter: #d8ddff;
+  --ifm-color-info-lightest: #f5f6ff;
+
+  --nexus-accent-pink: #f1b7ff;
+  --nexus-accent-peach: #ffcfbd;
+  --nexus-accent-light-blue: #a9e0ff;
+  --nexus-accent-yellow: #ffdf69;
+  --nexus-accent-apple-green: #daf181;
+  --nexus-accent-ivory: #f6f3eb;
+
   --nexus-radius-sm: 4px;
   --nexus-radius-md: 8px;
   --nexus-radius-lg: 12px;
@@ -45,31 +69,101 @@
   --nexus-shadow-xl: 0 32px 32px -8px rgba(0, 0, 0, 0.08), 0 0 32px -8px rgba(0, 0, 0, 0.12),
     0 0 1px 0 rgba(0, 0, 0, 0.2);
 
-  --docusaurus-highlighted-code-line-bg: rgba(52, 60, 237, 0.1);
+  --ifm-font-size-base: 87.5%;
+  --ifm-code-font-size: 85%;
+  --ifm-h1-font-size: 2rem;
+  --ifm-h2-font-size: 1.6rem;
+  --ifm-h3-font-size: 1.3rem;
+  --ifm-h4-font-size: 1.1rem;
+  --ifm-h5-font-size: 1rem;
+  --ifm-h6-font-size: 0.9rem;
+
+  --docusaurus-highlighted-code-line-bg: rgba(170, 181, 255, 0.15);
+
+  --ifm-font-family-base: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu,
+    Cantarell, 'Noto Sans', sans-serif;
+  --ifm-heading-font-family: var(--ifm-font-family-base);
+  --ifm-font-weight-base: 400;
+  --ifm-font-weight-medium: 500;
+  --ifm-font-weight-semibold: 600;
+  --ifm-font-weight-bold: 700;
+  --ifm-heading-font-weight: 600;
+  --ifm-font-family-monospace: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, 'Liberation Mono', 'Courier New', monospace;
+
+  --ifm-hr-background-color: var(--ifm-color-emphasis-200);
 }
 
 [data-theme='dark'] {
-  --ifm-color-primary: #8488f4;
-  --ifm-color-primary-dark: #5c62f1;
-  --ifm-color-primary-darker: #4f55ef;
-  --ifm-color-primary-darkest: #343ced;
-  --ifm-color-primary-light: #a3a6f7;
-  --ifm-color-primary-lighter: #b4b7f8;
-  --ifm-color-primary-lightest: #dadbfc;
+  --ifm-color-content-secondary: #d1d5db;
+  --ifm-color-content: #d1d5db;
+  --ifm-heading-color: #f9fafb;
 
-  --ifm-background-color: #1b1d21;
+  --ifm-color-primary: #d1d5db;
+  --ifm-color-primary-dark: #9ca3af;
+  --ifm-color-primary-darker: #6b7280;
+  --ifm-color-primary-darkest: #4b5563;
+  --ifm-color-primary-light: #e5e7eb;
+  --ifm-color-primary-lighter: #f3f4f6;
+  --ifm-color-primary-lightest: #f9fafb;
+
   --ifm-navbar-background-color: #202124;
-  --ifm-color-emphasis-100: #27292d;
-  --ifm-color-emphasis-200: #313338;
-  --ifm-color-emphasis-300: #3f4147;
-  --ifm-color-emphasis-400: #55575e;
-  --ifm-color-emphasis-500: #75777f;
-  --ifm-color-emphasis-600: #9a9ca4;
-  --ifm-color-emphasis-700: #c1c3ca;
-  --ifm-color-emphasis-800: #e2e3e8;
-  --ifm-color-emphasis-900: #f4f5f7;
+  --ifm-background-color: #202124 !important;
 
-  --docusaurus-highlighted-code-line-bg: rgba(132, 136, 244, 0.16);
+  --ifm-color-emphasis-100: #1f2937;
+  --ifm-color-emphasis-200: #374151;
+  --ifm-color-emphasis-300: #4b5563;
+  --ifm-color-emphasis-400: #6b7280;
+  --ifm-color-emphasis-500: #9ca3af;
+  --ifm-color-emphasis-600: #d1d5db;
+  --ifm-color-emphasis-700: #e5e7eb;
+  --ifm-color-emphasis-800: #f3f4f6;
+  --ifm-color-emphasis-900: #f9fafb;
+
+  --ifm-color-accent: #d8fd49;
+  --ifm-color-accent-dark: #d0fc25;
+  --ifm-color-accent-darker: #ccfc12;
+  --ifm-color-accent-darkest: #a9d805;
+  --ifm-color-accent-light: #e0fd6d;
+  --ifm-color-accent-lighter: #e4fd80;
+  --ifm-color-accent-lightest: #edfdab;
+
+  --ifm-link-color: #e5e7eb;
+  --ifm-link-hover-color: #f9fafb;
+
+  --docusaurus-highlighted-code-line-bg: rgba(205, 211, 255, 0.2);
+
+  --ifm-color-success: #7dcea0;
+  --ifm-color-success-dark: #6bc492;
+  --ifm-color-success-darker: #59ba84;
+  --ifm-color-success-darkest: #47b076;
+  --ifm-color-success-light: #8fd8ae;
+  --ifm-color-success-lighter: #a1e2bc;
+  --ifm-color-success-lightest: #c5edd8;
+
+  --ifm-color-warning: #ffebb8;
+  --ifm-color-warning-dark: #ffe5a5;
+  --ifm-color-warning-darker: #ffdf92;
+  --ifm-color-warning-darkest: #ffd97f;
+  --ifm-color-warning-light: #fff1cb;
+  --ifm-color-warning-lighter: #fff7de;
+  --ifm-color-warning-lightest: #fffdf1;
+
+  --ifm-color-danger: #f39a9a;
+  --ifm-color-danger-dark: #f18787;
+  --ifm-color-danger-darker: #ef7474;
+  --ifm-color-danger-darkest: #ed6161;
+  --ifm-color-danger-light: #f5adad;
+  --ifm-color-danger-lighter: #f7c0c0;
+  --ifm-color-danger-lightest: #fbe6e6;
+
+  --ifm-color-info: #cdd3ff;
+  --ifm-color-info-dark: #bac1ff;
+  --ifm-color-info-darker: #a7afff;
+  --ifm-color-info-darkest: #949dff;
+  --ifm-color-info-light: #e0e5ff;
+  --ifm-color-info-lighter: #f3f7ff;
+  --ifm-color-info-lightest: #fafbff;
 }
 
 .footer--minimal {

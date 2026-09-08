@@ -45,7 +45,7 @@
 .eyebrow,
 .stripLabel {
   margin: 0 0 0.9rem;
-  color: var(--nexus-accent);
+  color: var(--ifm-color-accent);
   font-size: 0.78rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -90,7 +90,7 @@
 
 .primaryAction {
   color: #0a0a0f;
-  background: var(--nexus-accent);
+  background: var(--ifm-color-accent);
   box-shadow: var(--nexus-shadow-lg);
 }
 

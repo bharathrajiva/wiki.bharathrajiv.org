@@ -26,7 +26,7 @@
   position: absolute;
   inset: auto 1.2rem 1.2rem 1.2rem;
   height: 2px;
-  background: linear-gradient(90deg, var(--ifm-color-primary), var(--nexus-accent));
+  background: linear-gradient(90deg, var(--ifm-color-primary), var(--ifm-color-accent));
   opacity: 0.75;
 }
 
