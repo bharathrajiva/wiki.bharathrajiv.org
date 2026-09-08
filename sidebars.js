@@ -3,7 +3,7 @@ const sidebars = {
   docSidebar: [
     {
       type: 'category',
-      label: 'Start Here 🧭',
+      label: 'Start Here',
       collapsible: false,
       collapsed: false,
       items: [
@@ -15,14 +15,14 @@ const sidebars = {
     'engineeringnexus/platform-engineering',
     {
       type: 'category',
-      label: 'DevOps 🔁',
+      label: 'DevOps',
       collapsible: true,
       collapsed: true,
       items: ['devops/overview'],
     },
     {
       type: 'category',
-      label: 'Infrastructure as a Service ☁️',
+      label: 'Infrastructure as a Service',
       collapsible: true,
       collapsed: true,
       items: [
@@ -34,7 +34,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'CAT 🎯',
+      label: 'CAT',
       collapsible: true,
       collapsed: true,
       items: [
@@ -129,7 +129,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Competitive Coding 🧩',
+      label: 'Competitive Coding',
       collapsible: true,
       collapsed: true,
       items: [
@@ -141,49 +141,49 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'SDR Radio 📡',
+      label: 'SDR Radio',
       collapsible: true,
       collapsed: true,
       items: ['sdr-radio/overview'],
     },
     {
       type: 'category',
-      label: 'Hangar 🚁',
+      label: 'Hangar',
       collapsible: true,
       collapsed: true,
       items: ['hangar/overview'],
     },
     {
       type: 'category',
-      label: 'MCP 🔌',
+      label: 'MCP',
       collapsible: true,
       collapsed: true,
       items: ['mcp/overview'],
     },
     {
       type: 'category',
-      label: 'Custom AI Models 🧠',
+      label: 'Custom AI Models',
       collapsible: true,
       collapsed: true,
       items: ['custom-ai-models/overview'],
     },
     {
       type: 'category',
-      label: 'Games 🎮',
+      label: 'Games',
       collapsible: true,
       collapsed: true,
       items: ['games/overview'],
     },
     {
       type: 'category',
-      label: 'Exploratory Projects 🧪',
+      label: 'Exploratory Projects',
       collapsible: true,
       collapsed: true,
       items: ['exploratory-projects/overview'],
     },
     {
       type: 'category',
-      label: 'More Engineering 🛠️',
+      label: 'More Engineering',
       collapsible: true,
       collapsed: true,
       items: [
@@ -194,7 +194,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Visual Systems 🗺️',
+      label: 'Visual Systems',
       collapsible: true,
       collapsed: true,
       items: ['engineeringnexus/visual-lab'],

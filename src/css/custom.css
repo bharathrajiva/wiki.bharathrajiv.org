@@ -180,3 +180,81 @@
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
+
+/*
+ * Monochrome prefix icons for primary sidebar items (Feather-style, like
+ * Glean's sidebar). Icon is a currentColor mask so it's black/white and
+ * follows the theme automatically. Position is keyed to each item's exact
+ * index in sidebars.js docSidebar[] - update the nth-child if that order
+ * changes. Categories with no fitting icon (Hangar, Games) are skipped.
+ */
+.menu__list > .theme-doc-sidebar-item-category-level-1:nth-child(1) > .menu__list-item-collapsible > .menu__link::before,
+.menu__list > .theme-doc-sidebar-item-link-level-1:nth-child(2) > .menu__link::before,
+.menu__list > .theme-doc-sidebar-item-category-level-1:nth-child(3) > .menu__list-item-collapsible > .menu__link::before,
+.menu__list > .theme-doc-sidebar-item-category-level-1:nth-child(4) > .menu__list-item-collapsible > .menu__link::before,
+.menu__list > .theme-doc-sidebar-item-category-level-1:nth-child(5) > .menu__list-item-collapsible > .menu__link::before,
+.menu__list > .theme-doc-sidebar-item-category-level-1:nth-child(6) > .menu__list-item-collapsible > .menu__link::before,
+.menu__list > .theme-doc-sidebar-item-category-level-1:nth-child(7) > .menu__list-item-collapsible > .menu__link::before,
+.menu__list > .theme-doc-sidebar-item-category-level-1:nth-child(9) > .menu__list-item-collapsible > .menu__link::before,
+.menu__list > .theme-doc-sidebar-item-category-level-1:nth-child(10) > .menu__list-item-collapsible > .menu__link::before,
+.menu__list > .theme-doc-sidebar-item-category-level-1:nth-child(12) > .menu__list-item-collapsible > .menu__link::before,
+.menu__list > .theme-doc-sidebar-item-category-level-1:nth-child(13) > .menu__list-item-collapsible > .menu__link::before,
+.menu__list > .theme-doc-sidebar-item-category-level-1:nth-child(14) > .menu__list-item-collapsible > .menu__link::before {
+  content: '';
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-right: 0.5rem;
+  vertical-align: -2px;
+  background-color: currentColor;
+  flex-shrink: 0;
+}
+
+.menu__list > .theme-doc-sidebar-item-category-level-1:nth-child(1) > .menu__list-item-collapsible > .menu__link::before {
+  -webkit-mask: url('/icons/home.svg') center / contain no-repeat;
+  mask: url('/icons/home.svg') center / contain no-repeat;
+}
+.menu__list > .theme-doc-sidebar-item-link-level-1:nth-child(2) > .menu__link::before {
+  -webkit-mask: url('/icons/server.svg') center / contain no-repeat;
+  mask: url('/icons/server.svg') center / contain no-repeat;
+}
+.menu__list > .theme-doc-sidebar-item-category-level-1:nth-child(3) > .menu__list-item-collapsible > .menu__link::before {
+  -webkit-mask: url('/icons/refresh-cw.svg') center / contain no-repeat;
+  mask: url('/icons/refresh-cw.svg') center / contain no-repeat;
+}
+.menu__list > .theme-doc-sidebar-item-category-level-1:nth-child(4) > .menu__list-item-collapsible > .menu__link::before {
+  -webkit-mask: url('/icons/cloud.svg') center / contain no-repeat;
+  mask: url('/icons/cloud.svg') center / contain no-repeat;
+}
+.menu__list > .theme-doc-sidebar-item-category-level-1:nth-child(5) > .menu__list-item-collapsible > .menu__link::before {
+  -webkit-mask: url('/icons/target.svg') center / contain no-repeat;
+  mask: url('/icons/target.svg') center / contain no-repeat;
+}
+.menu__list > .theme-doc-sidebar-item-category-level-1:nth-child(6) > .menu__list-item-collapsible > .menu__link::before {
+  -webkit-mask: url('/icons/code.svg') center / contain no-repeat;
+  mask: url('/icons/code.svg') center / contain no-repeat;
+}
+.menu__list > .theme-doc-sidebar-item-category-level-1:nth-child(7) > .menu__list-item-collapsible > .menu__link::before {
+  -webkit-mask: url('/icons/radio.svg') center / contain no-repeat;
+  mask: url('/icons/radio.svg') center / contain no-repeat;
+}
+.menu__list > .theme-doc-sidebar-item-category-level-1:nth-child(9) > .menu__list-item-collapsible > .menu__link::before {
+  -webkit-mask: url('/icons/link-2.svg') center / contain no-repeat;
+  mask: url('/icons/link-2.svg') center / contain no-repeat;
+}
+.menu__list > .theme-doc-sidebar-item-category-level-1:nth-child(10) > .menu__list-item-collapsible > .menu__link::before {
+  -webkit-mask: url('/icons/cpu.svg') center / contain no-repeat;
+  mask: url('/icons/cpu.svg') center / contain no-repeat;
+}
+.menu__list > .theme-doc-sidebar-item-category-level-1:nth-child(12) > .menu__list-item-collapsible > .menu__link::before {
+  -webkit-mask: url('/icons/compass.svg') center / contain no-repeat;
+  mask: url('/icons/compass.svg') center / contain no-repeat;
+}
+.menu__list > .theme-doc-sidebar-item-category-level-1:nth-child(13) > .menu__list-item-collapsible > .menu__link::before {
+  -webkit-mask: url('/icons/tool.svg') center / contain no-repeat;
+  mask: url('/icons/tool.svg') center / contain no-repeat;
+}
+.menu__list > .theme-doc-sidebar-item-category-level-1:nth-child(14) > .menu__list-item-collapsible > .menu__link::before {
+  -webkit-mask: url('/icons/map.svg') center / contain no-repeat;
+  mask: url('/icons/map.svg') center / contain no-repeat;
+}
