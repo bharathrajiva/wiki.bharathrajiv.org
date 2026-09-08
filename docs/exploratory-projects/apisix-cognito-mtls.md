@@ -1,168 +1,69 @@
 ---
 title: APISIX + Cognito Gateway (mTLS Control Plane)
-description: A self-hosted Apache APISIX gateway stack with a custom AWS Cognito JWT/RBAC plugin and mTLS-secured control plane, deployed via Docker Swarm.
+description: A self-hosted Apache APISIX gateway with a custom AWS Cognito JWT/RBAC plugin and an mTLS-secured control plane.
 slug: /exploratory-projects/apisix-cognito-mtls
 tags: [APISIX, AWS Cognito, mTLS, API Gateway, Docker Swarm, Lua]
 ---
 
-Repo: [`bharathrajiva/apisix-cognito-mtls`](https://github.com/bharathrajiva/apisix-cognito-mtls) ·
-Apache-2.0 · Status: **closed** (finished, single-purpose deployment kit — not an actively
-maintained framework)
+Repo: [`bharathrajiva/apisix-cognito-mtls`](https://github.com/bharathrajiva/apisix-cognito-mtls)
 
-## What this actually is
+## The idea
 
-`apisix-cognito-mtls` is not an application — it's an **infrastructure-automation bundle** for
-standing up a self-hosted [Apache APISIX](https://apisix.apache.org/) API gateway on Docker Swarm,
-pre-wired with:
+Most managed API gateways hand you authentication, authorization, and TLS as checkboxes. This
+project is what it looks like to build that same shape of system yourself, on your own
+infrastructure: an [Apache APISIX](https://apisix.apache.org/) gateway, fronting a backend, with
+AWS Cognito as the identity provider and a private mTLS mesh holding the gateway's own control
+plane together.
 
-- A custom APISIX authentication plugin (**`bauth`**) that validates AWS Cognito-issued JWTs and
-  enforces Cognito-group-based RBAC.
-- A custom **`redirect`** plugin for HTTP→HTTPS upgrades and URI rewriting.
-- **mTLS between the control-plane components** — etcd, APISIX, and the APISIX Dashboard — not
-  client-facing mTLS.
-- Shell scripts (`main.sh`, `sync_db.sh`, `sync_routes.sh`) that generate certs, deploy the Swarm
-  stack, register the public TLS cert, and sync etcd snapshots/routes between a local and remote
-  server.
-
-The most important thing to get right about the name: **"mTLS" here refers to internal
-cluster security, not client authentication.** End users never present a client certificate —
-they authenticate with a Cognito JWT bearer token. This is a common and reasonable split-trust
-pattern (mTLS for cluster-internal trust, OIDC/JWT for user identity), but the project name alone
-oversells the client-facing security model.
+The result is a self-contained "API Gateway Ecosystem" — APISIX, its etcd config store, and its
+Dashboard, deployed as a Docker Swarm stack, plus the certificate machinery and a custom plugin
+that ties Cognito into the request path.
 
 ## Architecture
 
-### Control plane — secured by mTLS
+![API Gateway Architecture diagram](/img/apisix-cognito-mtls-architecture.png)
 
-`etcd` (bitnami/etcd:3.5.7) is APISIX's config store, launched with `ETCD_CLIENT_CERT_AUTH=true`
-and a trusted CA file — it requires any client to present a certificate signed by the project's
-own self-generated CA. Both **APISIX** and the **APISIX Dashboard** connect to etcd over HTTPS,
-each presenting a client cert (`apisix.crt/key`, `apisix-dashboard.crt/key`) signed by that same
-CA (`ca.crt/key`). This is the actual mTLS the project name refers to.
+Two trust boundaries exist side by side, and the interesting part of this design is that they're
+deliberately different shapes:
 
-### Data plane — client-facing, JWT-based
+**Identity, at the edge.** A client authenticates against Cognito (sign-up, sign-in, an optional
+pre-signup Lambda for shaping roles/claims) and comes away with a JWT. That token is the client's
+passport for every request that follows — no certificates, no shared secrets, just a bearer token
+whose signature and claims get checked on every call.
 
-Public traffic hits APISIX directly (port 9443 HTTPS / 9080 HTTP, upgraded via the `redirect`
-plugin). The TLS certificate served here is a normal **Let's Encrypt** server cert — there is no
-`client.ca` configured on the SSL object and no client-certificate verification anywhere in the
-public listener path. Authentication and authorization are handled entirely by the `bauth` plugin:
+**Trust, inside the mesh.** The gateway's own moving parts — APISIX, its Dashboard, and the etcd
+store that holds all routing and plugin configuration — talk to each other over mutual TLS. Every
+service in that inner triangle presents a certificate signed by a private CA before it's allowed
+to read or write configuration. This is the "mTLS" in the project's name: it protects the
+gateway's brain, not the traffic passing through it.
 
-1. Client obtains a Cognito access token out-of-band (Hosted UI / SDK — not part of this repo).
-2. Client calls APISIX with `Authorization: Bearer <JWT>` (header, query param, or cookie, all
-   configurable).
-3. `bauth.lua` (`type = 'auth'`, `priority = 9000`) runs in the `rewrite` phase: fetches Cognito's
-   JWKS (`https://cognito-idp.{region}.amazonaws.com/{pool_id}/.well-known/jwks.json`), caches it
-   in a shared-memory dict (`bcache`, default 86400s TTL), reconstructs a PEM RSA public key from
-   the JWK's `n`/`e` via a **hand-rolled ASN.1/DER encoder**, and verifies the JWT signature with
-   `resty.jwt`.
-4. It extracts `cognito:groups` from the JWT payload and checks membership against the route's
-   configured `groups` list (default `["Admin"]`) — this is the RBAC layer.
-5. On success it injects `X-UserProfile` (full decoded JWT payload), `X-UserName`, and `X-Groups`
-   headers before proxying upstream.
-6. On any failure (missing token, bad signature, JWKS lookup failure, disallowed group) it returns
-   401 with a JSON body.
+Between those two boundaries sits the piece that makes them meet: a custom authentication plugin
+that fetches Cognito's public signing keys, verifies the JWT on the way in, checks the caller's
+Cognito group membership against what a route allows, and — if everything checks out — forwards
+the request onward with the caller's identity attached as headers the backend can trust without
+doing any of this work itself.
 
-The architecture diagram in the repo (`image.png`) also shows a frontend, Route53 DNS, the Cognito
-Hosted UI, and a Cognito Pre-Signup Lambda trigger — **none of that layer's code exists in this
-repository.** This repo covers only the gateway/plugin/cert-automation layer.
+## What the plugin actually does
 
-## Key components
+Cognito publishes its signing keys as a JWKS document rather than a ready-to-use public key file,
+so the plugin has to reconstruct a usable key from the raw key material before it can verify
+anything — a small, easy-to-get-wrong piece of cryptographic plumbing that's easy to take for
+granted when a framework does it for you. Once the signature checks out, the token's group claims
+decide whether the request is allowed to proceed, and a decoded, readable identity gets stamped
+onto the request as headers before it reaches the backend — so downstream services see who's
+calling and with what permissions, without needing to speak JWT themselves.
 
-| File | Role |
-| --- | --- |
-| `apiGateway.yml` | Docker Swarm stack: `etcd` (bitnami/etcd:3.5.7), `apisix` (apache/apisix:3.7.0-debian), `apisix-dashboard` (apache/apisix-dashboard:latest, unpinned). Plugins are bind-mounted raw Lua files over the stock image — no custom image build. |
-| `config.yaml` | APISIX config override: etcd as config provider, Admin API with a static key, etcd mTLS cert paths, and the `bauth`/`redirect` plugin allowlist entries. |
-| `conf.yaml` | Dashboard config: HTTPS listener, dashboard's own etcd mTLS certs, session JWT secret, and dashboard login accounts. |
-| `schema.json` | Dashboard's plugin-schema catalog (~7,255 lines) with hand-injected schema blocks for `bauth`/`redirect` so the UI can render config forms for them. Kept in sync by hand, no generator. |
-| `bauth.lua` | The custom Cognito JWT + RBAC plugin (464 lines). Has both a route-level `schema` and a `consumer_schema`. |
-| `redirect.lua` | Custom/vendored redirect plugin (248 lines): exact URI redirect, regex rewrite, HTTP→HTTPS upgrade. |
-| `main.sh` | Interactive deploy script: prompts for AWS region/Cognito pool ID/domain, patches `bauth.lua` defaults, generates the CA + leaf certs, deploys the stack, registers the SSL cert, writes credentials to disk. |
-| `sync_db.sh` | etcd snapshot backup/restore/migration between a local and remote host over SSH. |
-| `sync_routes.sh` | Pulls routes from the local Admin API and re-PUTs them to a remote instance — a blunt, non-idempotent overwrite-by-ID sync. |
+## Why build it this way
 
-## Tech stack
+Cloud-managed gateways make this trade-off invisibly. Building it by hand surfaces the actual
+decisions being made: how much you verify yourself versus delegate, where the trust boundary
+between "inside the mesh" and "facing the internet" actually sits, and how identity gets carried
+from an edge-facing token into a shape the rest of the system can just read. It's a useful
+exercise in taking apart something that's normally a black box.
 
-- **APISIX** `3.7.0-debian` (pinned) · **APISIX Dashboard** `latest` (unpinned — a reproducibility
-  risk)
-- **etcd** `3.5.7` (pinned)
-- **Plugin runtime**: Lua/LuaJIT (OpenResty, as embedded in APISIX), `lua-resty-http`,
-  `lua-resty-jwt` — both ship with stock APISIX images
-- **Certs**: OpenSSL CLI (2048-bit RSA, self-signed CA, 365-day validity) for the internal PKI;
-  externally-provisioned **Let's Encrypt** certs for the public domain
-- **Orchestration**: Docker Compose file v3.7, deployed via `docker stack deploy` (Swarm)
-- **Scripting**: Bash, `jq`, `yq`, `curl`, `ssh`/`scp`
+## Where it could go from here
 
-## Setup
-
-1. Prerequisites: Docker with Swarm already initialized (`docker swarm init` — not automated
-   here), OpenSSL, and a pre-existing Let's Encrypt cert for the domain at
-   `/etc/letsencrypt/live/{domain}/`.
-2. A **Cognito User Pool + App Client must already exist in AWS** — this repo does zero AWS
-   provisioning (no Terraform/CloudFormation/CDK anywhere in it).
-3. `chmod +x main.sh && sudo ./main.sh`, choose "fresh setup", supply the AWS region, Cognito pool
-   ID, and domain name.
-4. The script patches `bauth.lua`'s schema defaults, generates the CA and service certs into
-   `./mtls-apisix-etcd/`, copies in the Let's Encrypt cert, deploys the stack under the name
-   `swarm` (services become `swarm_apisix`, `swarm_etcd`, `swarm_apisix-dashboard`), registers the
-   SSL cert via the Admin API, and writes `apiGateway-credentials.txt`.
-5. Routes (and their `bauth` plugin config — `groups`, header/query/cookie names, cache TTL) are
-   added afterward via ad hoc Admin API `curl` calls or the Dashboard UI on port 7777.
-6. Redeployment: re-run `main.sh`, answer "no" to fresh setup — it tears down and redeploys the
-   three services in place (and refuses to proceed if `bauth.lua` still has the placeholder
-   `aws-region-id`, forcing a fresh setup instead).
-
-## Design decisions worth knowing
-
-- **Bespoke JWT verification instead of a stock plugin.** APISIX ships built-in `jwt-auth` and
-  `openid-connect` plugins (both are even enabled in the Dashboard's plugin list here), but the
-  author wrote `bauth` from scratch — including a hand-rolled ASN.1/DER encoder to turn a JWKS
-  RSA key's raw `n`/`e` into a PEM public key for `resty.jwt`, since the OpenResty/lua-resty-jwt
-  ecosystem doesn't have native JWK→PEM conversion. This folds JWT verification and Cognito-group
-  RBAC into a single plugin rather than composing two, at the cost of non-trivial hand-written
-  crypto-adjacent code with no accompanying tests.
-- **RBAC is coarse-grained**: authorization is just "does the token's `cognito:groups` claim
-  intersect the route's allow-listed groups" (default `["Admin"]`), plus a simple
-  method+path-regex `white_list` that bypasses auth entirely for specific routes.
-- **Plugins are bind-mounted, not baked into an image.** Simplest possible packaging, but plugin
-  code isn't versioned/immutable inside the container, and a `docker service update` alone won't
-  pick up Lua changes without a full redeploy.
-- **`docker stack deploy` (Swarm) chosen over plain Compose**, despite the stack being effectively
-  single-node with no replica scaling and no Swarm-native secrets/configs use (certs are plain
-  bind-mounted files) — buys rolling-update semantics that aren't otherwise leveraged.
-- **No IaC and no route GitOps**: Cognito resources are entirely externally provisioned and
-  undocumented in terms of required App Client settings; routes have no declarative source of
-  truth — `sync_routes.sh` is a manual, non-idempotent full overwrite.
-
-## Security considerations
-
-These are real findings from the checked-in configuration, not hypothetical risks — worth fixing
-before any reuse of this repo as a template:
-
-- **Secrets are committed to source control**: `config.yaml` has a static Admin API key
-  (`admin_key: SuperDuperAPIKey`), and `conf.yaml` has a placeholder dashboard session secret
-  (`secret: secret`) plus plaintext dashboard login passwords. `main.sh` also writes an
-  unencrypted `apiGateway-credentials.txt` to disk on every deploy.
-- **Dashboard `allow_list` is effectively disabled**: it includes `0.0.0.0/0` alongside
-  `127.0.0.1`, contradicting the file's own comment that access should be localhost-only.
-- **No `.gitignore` coverage for cert material or credentials files** — only Lua build artifacts
-  are ignored.
-
-## Current status
-
-Per the README ("Project status: Closed") and a clean 13-commit history spanning Oct 16–30, 2024
-(init → docs → architecture diagram → compose → custom plugin → deploy scripts → etcd sync →
-fixes → redirect plugin → final README), this reads as a **finished, working, single-purpose
-deployment kit** the author considers done — built for one specific personal deployment
-(hardcoded stack name `swarm`, hardcoded remote path, `ubuntu` SSH user), not a generalized
-reusable template.
-
-## Possible next steps
-
-- Rotate every committed default secret (Admin API key, dashboard JWT secret, dashboard
-  passwords) and template them via environment variables instead.
-- Tighten the dashboard `allow_list` to match its own documented intent.
-- Consider replacing `bauth`'s hand-rolled JWT verification with APISIX's stock
-  `openid-connect` plugin configured against the Cognito user pool, keeping only the
-  groups-RBAC and header-injection logic custom.
-- Add Terraform/CDK for the Cognito User Pool + App Client so the identity layer isn't entirely
-  manual and undocumented.
+The natural next layer is treating identity provisioning itself as code — the Cognito pool, its
+app client, and the pre-signup Lambda currently live entirely outside this repo and are set up by
+hand. Bringing that under the same kind of declarative management as the gateway configuration
+would close the loop: the whole identity-to-request path, gateway included, defined in one place.
