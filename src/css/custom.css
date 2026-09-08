@@ -171,3 +171,12 @@
   text-align: center;
   font-size: 0.85rem;
 }
+
+/* Primary (top-level) sidebar categories: full caps, tracked out */
+.menu__list > .theme-doc-sidebar-item-category-level-1 > .menu__list-item-collapsible > .menu__link,
+.menu__list > .theme-doc-sidebar-item-link-level-1 > .menu__link {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
