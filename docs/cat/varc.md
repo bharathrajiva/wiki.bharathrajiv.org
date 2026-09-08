@@ -1,6 +1,6 @@
 ---
 title: VARC
-description: Verbal Ability and Reading Comprehension — reading strategy, elimination patterns, and timing for CAT.
+description: Verbal Ability and Reading Comprehension, reading strategy, elimination patterns, and timing for CAT.
 slug: /cat/varc
 tags: [CAT, VARC, Reading Comprehension]
 ---

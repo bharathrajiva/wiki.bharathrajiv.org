@@ -5,7 +5,7 @@ slug: /games
 tags: [Games, Game Design, Prototyping]
 ---
 
-Game projects and prototypes — mechanics experiments, engine notes, and postmortems.
+Game projects and prototypes: mechanics experiments, engine notes, and postmortems.
 
 ## Topics
 

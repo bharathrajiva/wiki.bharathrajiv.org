@@ -1,6 +1,6 @@
 ---
 title: DILR
-description: Data Interpretation and Logical Reasoning — set selection, decomposition patterns, and timing for CAT.
+description: Data Interpretation and Logical Reasoning, set selection, decomposition patterns, and timing for CAT.
 slug: /cat/dilr
 tags: [CAT, DILR, Logical Reasoning]
 ---

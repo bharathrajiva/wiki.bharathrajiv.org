@@ -5,7 +5,7 @@ slug: /exploratory-projects
 tags: [Exploratory, Experiments, Side Projects]
 ---
 
-Exploratory projects that don't fit a durable track yet — early experiments, spikes, and ideas
+Exploratory projects that don't fit a durable track yet: early experiments, spikes, and ideas
 being tested for staying power.
 
 ## Topics
